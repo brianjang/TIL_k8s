@@ -8,7 +8,8 @@
 
 * pod 생성 확인 
   
-  ```pod$ microk8s.kubectl get replicaset,pods
+  ```
+  pod$ microk8s.kubectl get replicaset,pods
   NAME                    READY   STATUS    RESTARTS   AGE
   kubernetes-simple-pod   1/1     Running   0          7m43s
   ```
@@ -34,3 +35,20 @@
   replicaset.apps "nginx-replicaset" deleted
 ```
 
+* pod 수정 
+** 레이블 설정 변경 방법을 통해 실행 중인 파드를 재시작하지 않고 실제 서비스에서 분리해 디버깅 용도 등으로 사용할 수 있다.
+  ```
+  replicaset$ microk8s.kubectl edit pod nginx-replicaset-5g7jc
+  pod/nginx-replicaset-5g7jc edited
+  ```
+
+* kubectl get -o=jsonpath 을 사용해 파드 전체 내용중 원하는 부분만 선택해서 확인하는 옵션 
+  ```
+  replicaset$ microk8s.kubectl get pods -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.metadata.labels}{'\n'}{end}"
+  nginx-replicaset-5g7jc  map[app:nginx-other]
+  nginx-replicaset-c8ccf  map[app:nginx-replicaset]
+  nginx-replicaset-cghtl  map[app:nginx-replicaset]
+  nginx-replicaset-krmvs  map[app:nginx-replicaset]
+  nginx-replicaset-xnx95  map[app:nginx-replicaset]
+  nginx-replicaset-zzvjn  map[app:nginx-replicaset]
+  ```
