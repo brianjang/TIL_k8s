@@ -8,7 +8,7 @@
 
 * pod 생성 확인 
   
-  ```pod$ microk8s.kubectl get pods
+  ```pod$ microk8s.kubectl get replicaset,pods
   NAME                    READY   STATUS    RESTARTS   AGE
   kubernetes-simple-pod   1/1     Running   0          7m43s
   ```
@@ -25,3 +25,12 @@
   pod$ microk8s.kubectl delete pod kubernetes-simple-pod
   pod "kubernetes-simple-pod" deleted
   ```
+  
+# Controller
+
+* --cascade=false 옵션으로 레플리카세트 삭제시 파드는 남겨두고 컨트롤러만 삭제
+  ```
+  replicaset$ microk8s.kubectl delete replicaset nginx-replicaset --cascade=false
+  replicaset.apps "nginx-replicaset" deleted
+```
+
