@@ -89,3 +89,8 @@
 
     ==> replicaset.apps/nginx-deployment-6b4c4b9f48 인 레플리카세트가 관리하는 pod 들이 생성됨 
   ```
+  
+  * Kubernetes 네트워크 이해하기 
+  https://blog.hyojun.me/8?category=972261 ((1) : 컨테이너 네트워크부터 CNI까지)
+  https://blog.hyojun.me/9?category=972261 ((2) : 서비스 개념과 동작 원리)
+  
